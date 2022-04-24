@@ -1,5 +1,6 @@
 package guru.springframework.springrestclientexamples.service;
 
+import guru.springframework.springrestclientexamples.domain.Data;
 import guru.springframework.springrestclientexamples.domain.User;
 import org.junit.After;
 import org.junit.Before;
@@ -30,7 +31,7 @@ public class ApiServiceImplTest {
 
     @Test
     public void testGetUsers() {
-        List<User> users = apiService.getUsers(0);
-        assertEquals(1, users.size());
+        Data data = apiService.getUsers(0);
+        assertEquals(1, data.getData().size());
     }
 }

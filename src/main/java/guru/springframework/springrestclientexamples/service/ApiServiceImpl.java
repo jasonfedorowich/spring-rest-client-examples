@@ -1,26 +1,31 @@
 package guru.springframework.springrestclientexamples.service;
 
 import guru.springframework.springrestclientexamples.domain.Data;
-import guru.springframework.springrestclientexamples.domain.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
+import java.util.Map;
 
 @Service
 public class ApiServiceImpl implements ApiService{
 
-    private static final String URL = "http://private-anon-3251dad369-apifaketory.apiary-mock.com/api/user?limit=";
-
+    private final String url;
     private final RestTemplate restTemplate;
 
-    public ApiServiceImpl(RestTemplate restTemplate) {
+    public ApiServiceImpl(@Value("${api.url}") String url, RestTemplate restTemplate) {
+        this.url = url;
         this.restTemplate = restTemplate;
     }
 
     @Override
-    public List<User> getUsers(Integer limit) {
-        Data data = restTemplate.getForObject(URL + limit, Data.class);
-        return data.getData();
+    public Data getUsers(Integer limit) {
+        UriComponentsBuilder componentsBuilder = UriComponentsBuilder.fromUriString(url)
+                .queryParam("limit", limit);
+        Data data = restTemplate.getForObject(componentsBuilder.toUriString(), Data.class);
+        return data;
     }
 }
