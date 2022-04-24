@@ -9,6 +9,5 @@ import java.io.Serializable;
 @Setter
 public class Billing implements Serializable {
     private Card card;
-    private String iban;
-    private String swift;
+
 }

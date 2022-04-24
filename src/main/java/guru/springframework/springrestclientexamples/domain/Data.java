@@ -4,12 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
-public class ExpirationDate implements Serializable {
-    private String date;
-    private Integer timezone_type;
-    private String timezone;
+public class Data implements Serializable {
+
+    private List<User> data;
+
 
 }

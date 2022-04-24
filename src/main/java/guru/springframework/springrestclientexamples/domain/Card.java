@@ -11,6 +11,8 @@ public class Card implements Serializable {
 
     private String type;
     private String number;
-    private ExpirationDate expirationDate;
+    private ExpirationDate expiration_date;
+    private String iban;
+    private String swift;
 
 }
